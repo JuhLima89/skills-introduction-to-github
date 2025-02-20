@@ -1,0 +1,41 @@
+class Estoque:
+    def __init__(self):
+        self.itens = {}
+
+    def adicionar_item(self, nome, quantidade):
+        if nome in self.itens:
+            self.itens[nome] += quantidade
+        else:
+            self.itens[nome] = quantidade
+        print(f'{quantidade} unidades de {nome} adicionadas ao estoque.')
+
+    def remover_item(self, nome, quantidade):
+        if nome in self.itens and self.itens[nome] >= quantidade:
+            self.itens[nome] -= quantidade
+            print(f'{quantidade} unidades de {nome} removidas do estoque.')
+        else:
+            print(f'Não há estoque suficiente para {nome} ou item não encontrado.')
+
+    def visualizar_estoque(self):
+        if self.itens:
+            print("Estoque atual:")
+            for nome, quantidade in self.itens.items():
+                print(f'{nome}: {quantidade} unidades')
+        else:
+            print('O estoque está vazio.')
+
+# Exemplo de uso
+estoque = Estoque()
+
+# Adicionando itens
+estoque.adicionar_item("Produto A", 50)
+estoque.adicionar_item("Produto B", 30)
+
+# Visualizando o estoque
+estoque.visualizar_estoque()
+
+# Removendo itens
+estoque.remover_item("Produto A", 10)
+
+# Visualizando novamente
+estoque.visualizar_estoque()
